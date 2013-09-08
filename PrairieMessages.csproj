@@ -73,7 +73,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PrairiePluginLib\PrairiePluginLib.csproj">
+    <ProjectReference Include="..\PrairieCMS\PrairiePluginLib\PrairiePluginLib.csproj">
       <Project>{0928D4AB-A858-4FAD-8220-29980952BC36}</Project>
       <Name>PrairiePluginLib</Name>
     </ProjectReference>
