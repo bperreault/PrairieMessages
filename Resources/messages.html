@@ -1,0 +1,93 @@
+﻿    <div id="mediacenter">
+    <div id="MessageSeries"></div>
+        
+             <div id="seriesrepeater">
+            <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                <ContentTemplate>
+            <!-- series list -->
+            <h3>
+                Available Series</h3>
+                <small>Series list is ordered by date with most recent on top.  When you click on a series below, the messages in that series will be shown to the left.<br />
+                You can play, download, or view the hard copy.</small> 
+            <ul>
+                <asp:Repeater ID="Repeater1" OnItemDataBound="SeriesRepeater_ItemDataBound" runat="server">
+                    <ItemTemplate>
+                        <li>
+                            <asp:LinkButton OnClick="SeriesItem_Click" CssClass="seriesitem" ID="seriesitem" runat="server"></asp:LinkButton>
+                        </li>
+                    </ItemTemplate>
+                </asp:Repeater>
+            </ul>
+            </ContentTemplate> 
+        </asp:UpdatePanel>
+        </div>
+            
+        <div id="playerdiv">
+            <!-- player -->
+            <object id="slobj" name="slobj" data="data:application/x-silverlight-2," type="application/x-silverlight-2"
+                width="350" height="30">
+                <param name="source" value="ClientBin/AudioPlayer.xap?p=2" />
+                <param name="onError" value="onSilverlightError" />
+                <param name="background" value="#fff" />
+                <param name="minRuntimeVersion" value="3.0.40624.0" />
+                <param name="autoUpgrade" value="true" />
+                <a href="http://go.microsoft.com/fwlink/?LinkID=149156&v=3.0.40624.0" style="text-decoration: none">
+                    <img src="/images/PleaseInstallSilverlightSoYouCanListenHere.jpg" alt="Get Microsoft Silverlight"
+                        style="border-style: none" />
+                </a>
+            </object>
+            <iframe id="Iframe1" style="visibility: hidden; height: 0px; width: 0px; border: 0px">
+            </iframe>
+        </div>
+        
+        <asp:UpdatePanel ID="UpdatePanel1" runat="server"> 
+        <ContentTemplate>
+           <!-- individuals in selected series -->
+        <dl id="seriesmessages">
+            <dd><a id="rsslink" href="MessagesFeed.aspx" target="_blank" title="subscribe">rss</a>
+            <ul class="glossary">
+            <li><image src="/assets/images/pdf.gif" alt="read"></image>Read</li>
+            <li><image src="/assets/images/download.gif" alt="read">download</image></li>
+            <li><image src="/assets/images/playbutton.png" height="18" width="18" alt="read">listen</image></li>
+            <li><image src="/assets/images/video.png" height="18" width="18">view</image></li>
+            <li>Glossary:</li>
+            </ul>
+            </dd>
+            <h3 id="seriestitle"></h3>
+            <ul>
+            <asp:Repeater ID="MessagesRepeater" runat="server" OnItemDataBound="MessagesRepeater_ItemDataBound">
+            <ItemTemplate>
+                <li class="seriesdiv" id="seriesdiv<%# Eval("Uid") %>">
+                <dl><dt><%#Eval("Series")%></dt>                   
+                    <dd class="titlediv" id="titlediv<%# Eval("Uid") %>">
+                        <asp:Literal ID="listenlink" runat="server" />
+                        
+                       <p><%# Eval("MessageTitle") %></p>  </dd> 
+                       <dd>
+                    <asp:Literal runat="server" ID="videofile"></asp:Literal>
+                    </dd>                  <dd>
+                    <p id="descrip<%# Eval("Uid") %>"><%# Eval("MessageDescription") %></p> 
+                    </dd>
+                    <dd class="authordiv" id="authordiv<%# Eval("Uid") %>">
+                        <%#Eval("MessageAuthor", "{0:MMM dd yyyy}")%>
+                    </dd>
+                     <dd> <a class="pdflink" title="Save a pdf hard copy" href="<%# Eval("MessageHardCopy") %>" target="_blank">
+                            pdf</a>
+                            <asp:Literal runat="server" ID="downloadlink" />
+                     <small><%#Eval("DateCreated", "{0:MMM dd yyyy}")%></small></dd>
+                    
+                 </dl>   
+                </li>
+                </ItemTemplate>
+            </asp:Repeater>
+            </ul>
+        </dl>
+        
+        </ContentTemplate>      
+        </asp:UpdatePanel> 
+    </div>
+<script type="text/javascript">
+    var messagesList = [data];
+
+    [script]
+</script>

@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Messages.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="MessagesStoreContainer">
+          <EntitySet Name="messages" EntityType="Messages.Store.messages" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="messages">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="MessageTitle" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="DateCreated" Type="datetime" Nullable="false" />
+          <Property Name="MessageDescription" Type="text" Nullable="false" />
+          <Property Name="MessageAuthor" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="MessageHardCopy" Type="varchar" Nullable="false" MaxLength="100" />
+          <Property Name="Series" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="VideoFile" Type="varchar" MaxLength="1500" />
+          <Property Name="mp3File" Type="varchar" MaxLength="100" />
+          <Property Name="UID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+        </EntityType>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="Messages" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" >
+        <EntityContainer Name="MessagesContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="messages" EntityType="Messages.message" />
+        </EntityContainer>
+        <EntityType Name="message">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Type="Int32" Name="UID" Nullable="false" />
+          <Property Type="String" Name="MessageTitle" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DateCreated" Nullable="false" Precision="3" />
+          <Property Type="String" Name="MessageDescription" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MessageAuthor" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MessageHardCopy" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Series" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="VideoFile" MaxLength="1500" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="mp3File" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="Messages" />
+        <Alias Key="Target" Value="Messages.Store" />
+        <EntityContainerMapping CdmEntityContainer="MessagesContainer" StorageEntityContainer="MessagesStoreContainer">
+          <EntitySetMapping Name="messages">
+            <EntityTypeMapping TypeName="Messages.message">
+              <MappingFragment StoreEntitySet="messages">
+                <ScalarProperty Name="mp3File" ColumnName="mp3File" />
+                <ScalarProperty Name="VideoFile" ColumnName="VideoFile" />
+                <ScalarProperty Name="Series" ColumnName="Series" />
+                <ScalarProperty Name="MessageHardCopy" ColumnName="MessageHardCopy" />
+                <ScalarProperty Name="MessageAuthor" ColumnName="MessageAuthor" />
+                <ScalarProperty Name="MessageDescription" ColumnName="MessageDescription" />
+                <ScalarProperty Name="DateCreated" ColumnName="DateCreated" />
+                <ScalarProperty Name="MessageTitle" ColumnName="MessageTitle" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
