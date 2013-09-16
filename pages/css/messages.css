@@ -1,0 +1,172 @@
+﻿
+      #mediacenter {
+      background-color:#fff;}
+      li.messagesList {
+          width:100%;
+          padding:3px;
+          padding-bottom:8px;
+          border:solid 1px #ddd;
+          background-color:#f1f1f1;
+           -webkit-border-radius: 8px;
+       -moz-border-radius: 8px;
+            border-radius: 8px;
+            margin-bottom:3px;
+      }
+     .seriestitle {
+         font-size: 1.05em;
+         font-weight: bold;
+         color: #142851;
+         background-color: #fff;
+         height: 28px;
+     }
+     .messagetitle {
+         display:block;
+         font-size: 1.05em;
+         font-weight: bold;
+         color: #142851;
+         padding-top:3px;
+         padding-bottom:3px;
+     }
+     .notactive {
+         height: 30px;
+         background-color: #ddd;
+         overflow: hidden;
+     }
+
+     #seriesmessages {
+         width: 690px;
+         margin-bottom: 20px;
+     }
+
+         #seriesmessages ul {
+             margin: 0;
+         }
+
+         #seriesmessages li {
+             line-height: normal;
+             padding: 3px;
+             line-height: normal;
+             list-style:none;
+         }
+
+         #seriesmessages .activemessage {
+         }
+
+         #seriesmessages dt {
+             font-weight: lighter;
+         }
+
+     dd.authordiv {
+         font-weight: lighter;
+     }
+
+     dd.titlediv {
+         font-weight: bold;
+     }
+
+         dd.titlediv p {
+             width: 90%;
+             font-size: 1.1em;
+         }
+
+     #seriesmessages dd {
+         margin-bottom: 1px;
+     }
+
+     #seriesrepeater {
+         width: 300px;
+         float: right;
+     }
+         #seriesrepeater li {
+             list-style:none;
+         }
+     .seriesitem {
+         clear: both;
+         width: 100%;
+         text-align:left;
+     }
+     a.seriesitem {
+         display:block;
+         padding-bottom:8px;
+         font-size: 1.05em;
+     }
+
+     div#seriesrepeater ul li {
+         background-color: #fff;
+         width: 95%;
+     }
+
+     .seriesdiv {
+         cursor: hand;
+     }
+
+         .seriesdiv li dl {
+             margin-bottom: 5px;
+         }
+
+     div#seriesrepeater small {
+         line-height: normal;
+     }
+
+     #rsslink {
+         float: right;
+         width: 30px;
+         height: 20px;
+         margin-left: 5px;
+         background: transparent url("/assets/images/rssone.png") no-repeat;
+         font-size: .1em;
+         color: Orange;
+     }
+
+     .pdflink {
+         float: right;
+         width: 18px;
+         height: 16px;
+         background: transparent url("/assets/images/pdf.gif") no-repeat;
+         font-size: .1em;
+         color: #9BADC3;
+     }
+
+     .downloadlink {
+         float: right;
+         margin-right: 5px;
+         width: 18px;
+         height: 16px;
+         background: transparent url("/assets/images/download.gif") no-repeat;
+         font-size: .1em;
+         color: #9BADC3;
+     }
+
+     .videodiv {
+         cursor: hand;
+         height: 32px;
+         width: 38px;
+         background: transparent url("/assets/images/video.png") no-repeat;
+         font-size: .1em;
+         color: #9BADC3;
+     }
+
+
+     ul.glossary {
+         list-style: none;display:none;
+     }
+
+         ul.glossary li {
+             width: 85px;
+             border: 0 none !important;
+             float: right;
+             height: 20px;
+             list-style: none outside none;
+         }
+
+         ul.glossary img {
+             margin-right: 4px;
+         }
+
+     div.emphasize, #notification {
+         color: #ff0000;
+         font-size: 1.05em;
+         width:70%;
+         height:25px;
+     }
+ 

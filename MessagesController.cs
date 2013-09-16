@@ -2,45 +2,89 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Collections.Specialized;
 using System.Web.Script.Serialization;
-using System.Reflection;
-using System.IO;
+using Newtonsoft.Json.Linq;
 
 namespace PrairieMessages
 {
     public class MessagesController 
     {
+        
         public string GetContent()
         {
-            string html = GetHtmlFromResources();
-            var data = GetListsOfMessagesFromDB();
-            string scripts = GetScripts();
-            string content = html.Replace("[data]", data).Replace("[script]", scripts);
-            
+            MessagesPage mp = new MessagesPage();
+            string content = mp.GetContent();
             return content;
         }
 
-        string GetHtmlFromResources() {
-            foreach (string resource in Assembly.GetExecutingAssembly().GetManifestResourceNames())
-            {
-                if (resource.EndsWith("messages.html"))
-                {
-                    Stream s = Assembly.GetExecutingAssembly().GetManifestResourceStream(resource);
-                    byte[] buff = new byte[s.Length];
-                    s.Read(buff, 0, buff.Length);
-
-                    return Encoding.UTF8.GetString(buff);
-                }
-            }
-            return string.Empty;
+        public string GetAdminPages()
+        {
+            AdminPage ap = new AdminPage();
+            string content = ap.GetContent();
+            return content;
         }
-        string GetListsOfMessagesFromDB() {
-            List<MessagesModel> msgs = new MessagesRepository().GetListOfMessages();
+
+        /// <summary>
+        /// method name is the last parameter 
+        /// </summary>
+        /// <param name="method"></param>
+        /// <param name="form"></param>
+        /// <returns></returns>
+        public string GetBridgeData(string method, string json)
+        {
+            switch (method)
+            {
+
+                case "getRSSFeed":
+                    return getRSSFeed();
+                case "saveMessage":
+                    return saveMessage(json);
+                default:
+                    return "No bridge data found for: " + method;
+            }
+        }
+
+       
+
+        public string saveMessage(string json)
+        {
+
+            JObject jobject = JObject.Parse(json);
+            JToken form = jobject["message"];
+
+            DateTime dt = DateTime.Now;
+            DateTime.TryParse( form["DateCreated"].ToString(), out dt);
+            int uid = -1;
+            int.TryParse(form["UID"].ToString(), out uid);
+            MessagesModel mm = new MessagesModel()
+            {
+                MessageTitle = form["MessageTitle"].ToString(),
+                DateCreated = dt,
+                MessageDescription = form["MessageDescription"].ToString(),
+                MessageAuthor = form["MessageAuthor"].ToString(),
+                MessageHardCopy = form["MessageHardCopy"].ToString(),
+                Series = form["Series"].ToString(),
+                VideoFile = form["VideoFile"].ToString(),
+                mp3File = form["mp3File"].ToString(),
+                UID = uid
+            };
+
+            MessagesModel mm2 = new MessagesRepository().SaveMessage(mm);
+            string returnjson = new JavaScriptSerializer().Serialize(mm2);
+            return returnjson;
+        }
+        public string getRSSFeed(){
+            return "getrssfeed";
+        }
+
+        string GetMessagesInSeriesFromDB( string seriesName )
+         {
+            List<MessagesModel> msgs = new MessagesRepository().GetMessagesInSeries( seriesName);
             string returnjson = new JavaScriptSerializer().Serialize(msgs);
             return returnjson;
         }
-        string GetScripts() {
-            return "scripts";
-        }
+
+ 
     }
 }

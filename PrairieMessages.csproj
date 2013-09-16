@@ -12,6 +12,7 @@
     <AssemblyName>PrairieMessages</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,10 +31,14 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+      <HintPath>..\GolfWhisperer\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\GolfWhisperer\packages\JsonNet40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -48,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="pages\AdminPage.cs" />
     <Compile Include="message.cs">
       <DependentUpon>Messages.tt</DependentUpon>
     </Compile>
@@ -68,6 +75,9 @@
     </Compile>
     <Compile Include="MessagesController.cs" />
     <Compile Include="MessagesModel.cs" />
+    <Compile Include="pages\BasePage.cs" />
+    <Compile Include="pages\IPage.cs" />
+    <Compile Include="pages\MessagesPage.cs" />
     <Compile Include="MessagesRepository.cs" />
     <Compile Include="PrairieMessagesModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -79,7 +89,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="messages.html" />
+    <EmbeddedResource Include="pages\scripts\admin.js" />
+    <EmbeddedResource Include="pages\html\messagesadmin.html" />
+    <Content Include="images\download.gif" />
+    <Content Include="images\pdf.gif" />
+    <Content Include="images\playbutton.png" />
+    <Content Include="images\rssone.png" />
+    <Content Include="images\video.png" />
+    <EmbeddedResource Include="pages\css\messages.css" />
+    <EmbeddedResource Include="pages\html\messages.html" />
+    <EmbeddedResource Include="pages\scripts\messages.js" />
     <EmbeddedResource Include="Resources\messages.html" />
     <EmbeddedResource Include="Resources\messages.js" />
   </ItemGroup>

@@ -1,0 +1,55 @@
+﻿<style type="text/css">
+    [css]
+</style>  
+<div id="mediacenter">
+    <div id="MessageSeries"></div>
+
+ 
+    <div id="seriesrepeater">
+        <!-- series list -->
+        <h3>All Messages</h3>
+        <ul data-bind="foreach: allMessages">
+            <li class="messagesList"><span data-bind="text: Series"></span>
+                <a href="#" data-bind="click: function (data, event) { $parent.getMessageForEdit(this) }">
+                    <span data-bind="text: MessageTitle"></span></a>
+                Author: <span data-bind="text: MessageAuthor"></span><br />
+                Date: <span data-bind="    text: DateCreated"></span><br />
+            </li>
+        </ul>
+    </div>
+    <div id="notification"></div>
+
+    <dl id="entryform" data-bind="foreach: selectedMessage">
+
+        <dt>
+            Series Title: <input class="seriestitle" data-bind="value: Series" /><br />
+            Message Title: <input class="messagetitle" data-bind="value: MessageTitle" /></dt>
+                        
+                <dd>
+                    Message Description: <input  data-bind="value: MessageDescription" />  
+                </dd>
+                <dd >
+                    Author: <input data-bind="value: MessageAuthor" />
+                </dd>
+                <dd >
+                    Sound File: <input  data-bind="value: mp3File" />
+                </dd>
+                <dd>
+                        Video File: <input  data-bind="value: VideoFile" /> 
+                </dd>
+                <dd>Hard Copy: <input data-bind="value: MessageHardCopy" /></dd>
+                <dd>Date Created: <input data-bind="value: DateCreated" /> UID: <span data-bind="    text: UID" /> </dd>
+        <dd></dd>
+            </dl>
+
+        <input type="button" class="btn-primary"  data-bind="click: saveContent" value="Save" />
+                        &nbsp; <input type="button" class="btn"  data-bind="click: newMessage" value="NEW" />
+                        &nbsp;
+         <script src="/Scripts/libs/jquery/jquery.min.js" ></script>
+        <script src="/Scripts/libs/knockout/knockout-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+
+      <div id="seriesList" style="display:none;">[data]</div>
+      <script type="text/javascript">
+          [script]
+      </script>
+    </div>

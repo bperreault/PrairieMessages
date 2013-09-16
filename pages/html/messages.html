@@ -1,0 +1,87 @@
+﻿<style type="text/css">
+    [css]
+</style>  
+<div id="mediacenter">
+    <div id="MessageSeries"></div>
+
+    <div id="seriesrepeater">
+        <!-- series list -->
+        <h3>Available Series</h3>
+        <small>Series list is ordered by date with most recent on top.  When you click on a series below, the messages in that series will be shown to the left.<br />
+            You can play, download, or view the hard copy.</small>
+        <ul data-bind="foreach: seriesList">
+            <li>
+                <a href="#" class="seriesitem" data-bind="click: function (data, event) { $parent.getSeriesForView(this) }">
+                    <span data-bind="text: Series"></span></a>
+            </li>
+        </ul>
+    </div>
+    <div id="notification"></div>
+    <div id="playerdiv">
+        <!-- player -->
+        <object id="slobj" name="slobj" data="data:application/x-silverlight-2," type="application/x-silverlight-2"
+            width="350" height="30">
+            <param name="source" value="ClientBin/AudioPlayer.xap?p=2" />
+            <param name="onError" value="onSilverlightError" />
+            <param name="background" value="#fff" />
+            <param name="minRuntimeVersion" value="3.0.40624.0" />
+            <param name="autoUpgrade" value="true" />
+            <a href="http://go.microsoft.com/fwlink/?LinkID=149156&v=3.0.40624.0" style="text-decoration: none">
+                <img src="/images/PleaseInstallSilverlightSoYouCanListenHere.jpg" alt="Get Microsoft Silverlight"
+                    style="border-style: none" />
+            </a>
+        </object>
+        <iframe id="Iframe1" style="visibility: hidden; height: 0px; width: 0px; border: 0px"></iframe>
+    </div>
+
+    <!-- individuals in selected series -->
+    <dl id="seriesmessages">
+        <dd><a id="rsslink" href="PrairieMessages.MessagesController.getRSSFeed" target="_blank" title="subscribe">rss</a>
+            <ul class="glossary">
+                <li>
+                    <img src="images/pdf.gif" alt="read" />Read</li>
+                <li>
+                    <img src="/assets/images/download.gif" alt="read" />download</li>
+                <li>
+                    <img src="/assets/images/playbutton.png" height="18" width="18" alt="read" />listen</li>
+                <li>
+                    <img src="/assets/images/video.png" height="18" width="18" />view</li>
+                <li>Glossary:</li>
+            </ul>
+        </dd>
+        <dd>
+            <p class="seriestitle" data-bind="text: seriestitle"></p>
+            <ul data-bind="foreach: messagesList">
+                <li>
+                    <dl data-bind=" attr: { class: messageClass }">
+                        <dt><span class="messagetitle" data-bind="text: MessageTitle"></span></dt>
+                        <dd>
+                            <a href="#" data-bind="click: function (data, event) { $parent.setMP3PlayerUp(this) }">Listen</a>
+                        </dd>
+                        <dd>
+                            <span data-bind="html: VideoFile"></span>
+                        </dd>
+                        <dd>
+                            <p><span data-bind="text: MessageDescription"></span></p>
+                        </dd>
+                        <dd class="authordiv">
+                            <p><span data-bind="text: MessageAuthor"></span></p>
+                        </dd>
+                        <dd><a class="pdflink" title="Save a pdf hard copy" data-bind="href: MessageHardCopy" target="_blank">pdf</a>
+                            <a href="#" data-bind="href: mp3File">Download</a>
+                            <small><span data-bind="text: DateCreated"></span></small></dd>
+
+                    </dl>
+                </li>
+            </ul>
+        </dd>
+    </dl>
+
+         <script src="/Scripts/libs/jquery/jquery.min.js" ></script>
+        <script src="/Scripts/libs/knockout/knockout-2.1.0.js" type="text/javascript" charset="utf-8"></script>
+
+      <div id="seriesList" style="display:none;">[data]</div>
+      <script type="text/javascript">
+          [script]
+      </script>
+    </div>
